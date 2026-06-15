@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="./assets/hero.png" alt="Sifthook Hero Banner" width="100%" />
+
   
   <h1>🔬 Sifthook</h1>
   <p><b>The AI-powered PR analyzer that mathematically guarantees the blast radius of every code change.</b></p>
@@ -20,7 +20,7 @@
 Instead of just looking at raw text diffs, Sifthook builds a permanent, queryable semantic dependency graph of your codebase. When you submit a PR or make a change, Sifthook doesn't just read the changed lines—it knows exactly **what depends on what**. It traces the execution path, catches logical "ghost dependencies" from your team's commit history, and writes boilerplate tests for the functions you just broke.
 
 <div align="center">
-  <img src="./assets/terminal.png" alt="Sifthook running in terminal" width="80%" />
+
   <p><i>Sifthook computing blast radius dependencies and analyzing PRs locally.</i></p>
 </div>
 
@@ -60,7 +60,7 @@ Plug in any model you want. Sifthook natively supports Anthropic (Claude), OpenR
 
 ### 1. Install Globally
 ```bash
-npm install -g sifthook
+npm install -g @arunachalamtoro/sifthook
 ```
 
 ### 2. Initialize your repository

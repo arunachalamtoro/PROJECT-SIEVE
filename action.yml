@@ -37,7 +37,7 @@ runs:
 
     - name: Install Sifthook
       shell: bash
-      run: npm install -g sifthook
+      run: npm install -g @arunachalamtoro/sifthook
 
     - name: Restore Sifthook cache
       uses: actions/cache@v4

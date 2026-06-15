@@ -1,5 +1,5 @@
 {
-  "name": "sifthook",
+  "name": "@arunachalamtoro/sifthook",
   "version": "1.0.2",
   "description": "AI-powered PR analyzer with semantic dependency graph — knows the blast radius of every code change",
   "type": "module",
