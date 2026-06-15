@@ -58,9 +58,16 @@ Plug in any model you want. Sieve natively supports Anthropic (Claude), OpenRout
 
 ## 🚀 Installation & Quickstart
 
-### 1. Install Globally
+### 1. Install Locally (or link globally)
+Since Sieve is not yet published to the public NPM registry, you can install it directly from your repository:
 ```bash
-npm install -g project-sieve
+# Option A: Link locally so you can use the 'sieve' command anywhere
+npm install
+npm run build
+npm link
+
+# Option B: Or run it directly from the repo using npx
+npx tsx src/cli/index.ts init
 ```
 
 ### 2. Initialize your repository
