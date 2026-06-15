@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * Sifthook CLI — AI-powered PR analyzer with semantic dependency graph.
+ * Sifthookdev CLI — AI-powered PR analyzer with semantic dependency graph.
  * Main entrypoint that registers all commands.
  */
 
@@ -16,7 +16,7 @@ import { daemonCommand } from './commands/daemon.js';
 const program = new Command();
 
 program
-  .name('sifthook')
+  .name('sifthookdev')
   .description('AI-powered PR analyzer with semantic dependency graph — knows the blast radius of every code change')
   .version('1.0.0');
 

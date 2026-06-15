@@ -6,7 +6,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import type { BlastRadiusNode } from '../types.js';
-import type { SifthookStore } from '../indexer/store.js';
+import type { SifthookdevStore } from '../indexer/store.js';
 
 type TestFramework = 'vitest' | 'jest';
 
@@ -51,7 +51,7 @@ function detectTestFramework(repoRoot: string): TestFramework {
  */
 export function scaffoldTests(
   blastRadius: BlastRadiusNode[],
-  store: SifthookStore,
+  store: SifthookdevStore,
   repoRoot: string
 ): Array<{ filePath: string; content: string }> {
   const framework = detectTestFramework(repoRoot);
@@ -100,7 +100,7 @@ function generateTestPath(relPath: string): string {
 function generateTestContent(
   sourceRelPath: string,
   nodes: BlastRadiusNode[],
-  store: SifthookStore,
+  store: SifthookdevStore,
   framework: TestFramework,
   repoRoot: string
 ): string {
@@ -117,7 +117,7 @@ function generateTestContent(
 function generateTSTestContent(
   sourceRelPath: string,
   nodes: BlastRadiusNode[],
-  store: SifthookStore,
+  store: SifthookdevStore,
   framework: TestFramework,
   repoRoot: string
 ): string {
@@ -211,7 +211,7 @@ function generateTSTestContent(
 function generatePythonTestContent(
   sourceRelPath: string,
   nodes: BlastRadiusNode[],
-  store: SifthookStore,
+  store: SifthookdevStore,
   repoRoot: string
 ): string {
   const lines: string[] = [];

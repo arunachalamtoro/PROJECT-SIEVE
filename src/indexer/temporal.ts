@@ -5,8 +5,8 @@
 
 import { execSync } from 'node:child_process';
 import path from 'node:path';
-import type { SifthookStore } from './store.js';
-import type { SifthookConfig } from '../types.js';
+import type { SifthookdevStore } from './store.js';
+import type { SifthookdevConfig } from '../types.js';
 
 interface CommitFileSet {
   hash: string;
@@ -18,9 +18,9 @@ interface CommitFileSet {
  * Files modified in the same commit ≥ threshold% of the time get a temporal edge.
  */
 export async function analyzeTemporalCoupling(
-  store: SifthookStore,
+  store: SifthookdevStore,
   repoRoot: string,
-  config: SifthookConfig
+  config: SifthookdevConfig
 ): Promise<number> {
   const threshold = config.temporal_coupling_threshold;
   const commitLimit = config.temporal_commit_limit;

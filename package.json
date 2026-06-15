@@ -1,11 +1,11 @@
 {
-  "name": "@arunachalamtoro/sifthook",
-  "version": "1.0.2",
+  "name": "sifthookdev",
+  "version": "1.0.6",
   "description": "AI-powered PR analyzer with semantic dependency graph — knows the blast radius of every code change",
   "type": "module",
   "main": "dist/src/cli/index.js",
   "bin": {
-    "sifthook": "dist/src/cli/index.js"
+    "sifthookdev": "dist/src/cli/index.js"
   },
   "scripts": {
     "build": "tsc && vite build",
@@ -14,14 +14,14 @@
     "electron:build": "npm run build && electron-builder",
     "test": "vitest run",
     "test:watch": "vitest",
-    "sifthook": "tsx src/cli/index.ts",
+    "sifthookdev": "tsx src/cli/index.ts",
     "lint": "tsc --noEmit",
     "download-grammars": "tsx scripts/download-grammars.ts",
     "prepare": "tsx scripts/download-grammars.ts"
   },
   "build": {
-    "appId": "com.projectsifthook.app",
-    "productName": "Sifthook",
+    "appId": "com.projectsifthookdev.app",
+    "productName": "Sifthookdev",
     "directories": {
       "output": "release"
     },

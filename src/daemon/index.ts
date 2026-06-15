@@ -6,7 +6,7 @@
 import { spawn } from 'node:child_process';
 import path from 'node:path';
 import fs from 'node:fs';
-import { SifthookStore } from '../indexer/store.js';
+import { SifthookdevStore } from '../indexer/store.js';
 import { startWatcher } from './watcher.js';
 
 const PID_FILE = 'daemon.pid';
@@ -16,14 +16,14 @@ const LOG_FILE = 'daemon.log';
  * Get the path to the PID file.
  */
 function getPidPath(repoRoot: string): string {
-  return path.join(repoRoot, '.sifthook', PID_FILE);
+  return path.join(repoRoot, '.sifthookdev', PID_FILE);
 }
 
 /**
  * Get the path to the daemon log file.
  */
 function getLogPath(repoRoot: string): string {
-  return path.join(repoRoot, '.sifthook', LOG_FILE);
+  return path.join(repoRoot, '.sifthookdev', LOG_FILE);
 }
 
 /**
@@ -56,8 +56,8 @@ export function isDaemonRunning(repoRoot: string): { running: boolean; pid?: num
  * Start the daemon in the foreground (used when called directly).
  */
 export async function startDaemonForeground(repoRoot: string): Promise<void> {
-  const sifthookDir = path.join(repoRoot, '.sifthook');
-  fs.mkdirSync(sifthookDir, { recursive: true });
+  const sifthookdevDir = path.join(repoRoot, '.sifthookdev');
+  fs.mkdirSync(sifthookdevDir, { recursive: true });
 
   // Write PID file
   const pidPath = getPidPath(repoRoot);
@@ -73,11 +73,11 @@ export async function startDaemonForeground(repoRoot: string): Promise<void> {
     console.log(line);
   };
 
-  logFn('Sifthook daemon started');
+  logFn('Sifthookdev daemon started');
   logFn(`Repository: ${repoRoot}`);
   logFn(`PID: ${process.pid}`);
 
-  const store = new SifthookStore(repoRoot);
+  const store = new SifthookdevStore(repoRoot);
   const { watcher, stats } = startWatcher(repoRoot, store, logFn);
 
   logFn('Watching for file changes...');
@@ -113,7 +113,7 @@ export async function startDaemonForeground(repoRoot: string): Promise<void> {
 export function startDaemonBackground(repoRoot: string): number {
   const { running, pid: existingPid } = isDaemonRunning(repoRoot);
   if (running) {
-    console.log(`Daemon is gfgf already running (PID: ${existingPid})`);
+    console.log(`Daemon is already running (PID: ${existingPid})`);
     return existingPid!;
   }
 

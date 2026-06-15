@@ -1,5 +1,5 @@
 /**
- * `sifthook daemon` — Manage the background pre-computation daemon.
+ * `sifthookdev daemon` — Manage the background pre-computation daemon.
  */
 
 import { Command } from 'commander';
@@ -13,7 +13,7 @@ import {
 } from '../../daemon/index.js';
 
 export const daemonCommand = new Command('daemon')
-  .description('Manage the Sifthook background daemon for pre-computation');
+  .description('Manage the Sifthookdev background daemon for pre-computation');
 
 daemonCommand
   .command('start')
@@ -24,10 +24,10 @@ daemonCommand
     const repoRoot = path.resolve(options.path);
 
     if (options.foreground) {
-      console.log('🔬 Sifthook Daemon — Running in foreground (Ctrl+C to stop)\n');
+      console.log('🔬 Sifthookdev Daemon — Running in foreground (Ctrl+C to stop)\n');
       await startDaemonForeground(repoRoot);
     } else {
-      console.log('🔬 Sifthook Daemon');
+      console.log('🔬 Sifthookdev Daemon');
       console.log('');
 
       const { running, pid: existingPid } = isDaemonRunning(repoRoot);
@@ -40,10 +40,10 @@ daemonCommand
         const pid = startDaemonBackground(repoRoot);
         console.log(`   ✅ Started (PID: ${pid})`);
         console.log(`   Repository: ${repoRoot}`);
-        console.log(`   Log: ${path.join(repoRoot, '.sifthook', 'daemon.log')}`);
+        console.log(`   Log: ${path.join(repoRoot, '.sifthookdev', 'daemon.log')}`);
         console.log('');
         console.log('   The daemon will silently update the graph as you edit files.');
-        console.log('   Run "sifthook daemon stop" to stop it.');
+        console.log('   Run "sifthookdev daemon stop" to stop it.');
       } catch (err) {
         console.error(`   ❌ Failed to start: ${(err as Error).message}`);
       }
@@ -59,9 +59,9 @@ daemonCommand
 
     const stopped = stopDaemon(repoRoot);
     if (stopped) {
-      console.log('🔬 Sifthook Daemon — Stopped');
+      console.log('🔬 Sifthookdev Daemon — Stopped');
     } else {
-      console.log('🔬 Sifthook Daemon — Not running');
+      console.log('🔬 Sifthookdev Daemon — Not running');
     }
   });
 
@@ -74,7 +74,7 @@ daemonCommand
 
     const status = getDaemonStatus(repoRoot);
 
-    console.log('🔬 Sifthook Daemon Status');
+    console.log('🔬 Sifthookdev Daemon Status');
     console.log('━'.repeat(40));
 
     if (status.running) {

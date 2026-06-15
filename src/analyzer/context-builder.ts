@@ -4,7 +4,7 @@
  */
 
 import path from 'node:path';
-import type { SifthookStore } from '../indexer/store.js';
+import type { SifthookdevStore } from '../indexer/store.js';
 import type { DiffFile, BlastRadiusNode } from '../types.js';
 import { estimateTokens } from '../types.js';
 
@@ -14,7 +14,7 @@ import { estimateTokens } from '../types.js';
 export function buildReviewPrompt(
   diffFiles: DiffFile[],
   blastRadius: BlastRadiusNode[],
-  store: SifthookStore,
+  store: SifthookdevStore,
   repoRoot: string
 ): { prompt: string; estimatedTokens: number } {
   const sections: string[] = [];

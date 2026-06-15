@@ -1,10 +1,10 @@
 /**
- * `sifthook query` — Query the blast radius of a file or symbol.
+ * `sifthookdev query` — Query the blast radius of a file or symbol.
  */
 
 import { Command } from 'commander';
 import path from 'node:path';
-import { SifthookStore } from '../../indexer/store.js';
+import { SifthookdevStore } from '../../indexer/store.js';
 import { computeBlastRadius, formatBlastRadiusTree } from '../../analyzer/blast-radius.js';
 import { loadConfig } from '../../config.js';
 
@@ -23,7 +23,7 @@ export const queryCommand = new Command('query')
     // Normalize the file path
     const filePath = path.resolve(repoRoot, file).replace(/\\/g, '/');
 
-    const store = new SifthookStore(repoRoot);
+    const store = new SifthookdevStore(repoRoot);
 
     try {
       const nodes = computeBlastRadius(

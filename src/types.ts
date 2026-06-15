@@ -184,7 +184,7 @@ export interface GraphOutput {
 
 // ─── Config ────────────────────────────────────────────────────────
 
-export interface SifthookConfig {
+export interface SifthookdevConfig {
   /** Max blast-radius BFS depth (default: 2) */
   max_depth: number;
 
@@ -216,7 +216,7 @@ export interface SifthookConfig {
   exclude_patterns: string[];
 }
 
-export const DEFAULT_CONFIG: SifthookConfig = {
+export const DEFAULT_CONFIG: SifthookdevConfig = {
   max_depth: 2,
   languages: ['typescript', 'javascript', 'python'],
   provider: 'anthropic',
@@ -228,7 +228,7 @@ export const DEFAULT_CONFIG: SifthookConfig = {
   exclude_patterns: [
     'node_modules/**',
     'dist/**',
-    '.sifthook/**',
+    '.sifthookdev/**',
     '**/*.test.*',
     '**/*.spec.*',
     'coverage/**',

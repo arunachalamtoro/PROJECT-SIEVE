@@ -1,11 +1,11 @@
 /**
- * MCP Tools — implements the 4 Sifthook tools for MCP clients.
+ * MCP Tools — implements the 4 Sifthookdev tools for MCP clients.
  * Uses Zod schemas as required by @modelcontextprotocol/sdk.
  */
 
 import { z } from 'zod';
 import path from 'node:path';
-import { SifthookStore } from '../indexer/store.js';
+import { SifthookdevStore } from '../indexer/store.js';
 import { computeBlastRadius } from '../analyzer/blast-radius.js';
 import { searchSymbols } from '../indexer/embeddings.js';
 import { parseDiffText } from '../analyzer/diff.js';
@@ -41,7 +41,7 @@ export const getDependencyGraphSchema = z.object({
 
 export function createToolHandlers(repoRoot: string) {
   const config = loadConfig(repoRoot);
-  const store = new SifthookStore(repoRoot);
+  const store = new SifthookdevStore(repoRoot);
 
   return {
     get_blast_radius: async (input: z.infer<typeof getBlastRadiusSchema>) => {
@@ -59,7 +59,7 @@ export function createToolHandlers(repoRoot: string) {
     },
 
     search_codebase: async (input: z.infer<typeof searchCodebaseSchema>) => {
-      const results = await searchSymbols(store.getSifthookDir(), input.query, input.top_k);
+      const results = await searchSymbols(store.getSifthookdevDir(), input.query, input.top_k);
 
       return {
         results: results.map(r => ({

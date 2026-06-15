@@ -1,4 +1,4 @@
-# Contributing to Project Sieve
+# Contributing to Project Sifthookdev
 
 First off, thanks for taking the time to contribute! 🎉
 
@@ -6,7 +6,7 @@ First off, thanks for taking the time to contribute! 🎉
 
 ### 🌍 Adding New Language Support
 
-This is the **highest-value contribution** you can make. Sieve uses tree-sitter for parsing, and adding a new language is straightforward:
+This is the **highest-value contribution** you can make. Sifthookdev uses tree-sitter for parsing, and adding a new language is straightforward:
 
 1. **Add the grammar**: Place the WASM grammar file in `grammars/tree-sitter-<language>.wasm`
 2. **Register the language**: Update `src/indexer/parser.ts`:
@@ -28,7 +28,7 @@ Open an issue with:
 - What you expected to happen
 - What actually happened
 - Steps to reproduce
-- Output of `sieve init` and relevant commands
+- Output of `sifthookdev init` and relevant commands
 - Your Node.js version (`node -v`)
 
 ### 💡 Feature Requests
@@ -51,8 +51,8 @@ Open an issue with the `enhancement` label. Describe:
 
 ```bash
 # Clone the repo
-git clone https://github.com/your-fork/project-sieve.git
-cd project-sieve
+git clone https://github.com/your-fork/project-sifthookdev.git
+cd project-sifthookdev
 
 # Install dependencies
 npm install
@@ -61,7 +61,7 @@ npm install
 npm run download-grammars
 
 # Run the CLI in dev mode
-npm run sieve -- init
+npm run sifthookdev -- init
 
 # Run tests
 npm test

@@ -1,11 +1,11 @@
 /**
- * `sifthook analyze` — Analyze a diff/PR with blast-radius-aware AI review.
+ * `sifthookdev analyze` — Analyze a diff/PR with blast-radius-aware AI review.
  */
 
 import { Command } from 'commander';
 import path from 'node:path';
 import fs from 'node:fs';
-import { SifthookStore } from '../../indexer/store.js';
+import { SifthookdevStore } from '../../indexer/store.js';
 import { getLocalDiff, getGitHubPRDiff, getGitHubRepo } from '../../analyzer/diff.js';
 import { computeBlastRadius } from '../../analyzer/blast-radius.js';
 import { buildReviewPrompt } from '../../analyzer/context-builder.js';
@@ -30,7 +30,7 @@ export const analyzeCommand = new Command('analyze')
     const config = loadConfig(repoRoot);
     const depth = parseInt(options.depth ?? '', 10) || config.max_depth;
 
-    console.log('🔬 Sifthook — Analyzing changes...\n');
+    console.log('🔬 Sifthookdev — Analyzing changes...\n');
 
     // 1. Get the diff
     let diffFiles: DiffFile[];
@@ -68,7 +68,7 @@ export const analyzeCommand = new Command('analyze')
 
     // 2. Compute blast radius for each changed file
     console.log('💥 Computing blast radius...');
-    const store = new SifthookStore(repoRoot);
+    const store = new SifthookdevStore(repoRoot);
     const allBlastRadius: BlastRadiusNode[] = [];
 
     try {

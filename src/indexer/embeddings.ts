@@ -5,7 +5,7 @@
 
 import path from 'node:path';
 import fs from 'node:fs';
-import type { SifthookStore } from './store.js';
+import type { SifthookdevStore } from './store.js';
 import type { SymbolRecord } from '../types.js';
 
 // LanceDB and transformers are loaded dynamically to avoid startup cost
@@ -35,11 +35,11 @@ async function getEmbeddingPipeline(): Promise<any> {
 /**
  * Get or create LanceDB connection.
  */
-async function getLanceDB(sifthookDir: string) {
+async function getLanceDB(sifthookdevDir: string) {
   if (!lancedb) {
     lancedb = await import('@lancedb/lancedb');
   }
-  const vectorDir = path.join(sifthookDir, 'vectors');
+  const vectorDir = path.join(sifthookdevDir, 'vectors');
   fs.mkdirSync(vectorDir, { recursive: true });
   return lancedb.connect(vectorDir);
 }
@@ -61,11 +61,11 @@ function buildSymbolSummary(symbol: SymbolRecord, filePath: string): string {
  * Generate embeddings for all symbols in the store and save to LanceDB.
  */
 export async function generateAndStoreEmbeddings(
-  store: SifthookStore,
+  store: SifthookdevStore,
   repoRoot: string
 ): Promise<number> {
   const extractor = await getEmbeddingPipeline();
-  const db = await getLanceDB(store.getSifthookDir());
+  const db = await getLanceDB(store.getSifthookdevDir());
 
   const files = store.getAllFiles();
   const records: Array<{
@@ -120,7 +120,7 @@ export async function generateAndStoreEmbeddings(
  * Search for symbols semantically using a text query.
  */
 export async function searchSymbols(
-  sifthookDir: string,
+  sifthookdevDir: string,
   query: string,
   topK: number = 8
 ): Promise<
@@ -134,7 +134,7 @@ export async function searchSymbols(
   }>
 > {
   const extractor = await getEmbeddingPipeline();
-  const db = await getLanceDB(sifthookDir);
+  const db = await getLanceDB(sifthookdevDir);
 
   // Generate query embedding
   const output = await extractor(query, {
@@ -170,12 +170,12 @@ export async function searchSymbols(
  * Update embeddings for a single file (for daemon incremental updates).
  */
 export async function updateFileEmbeddings(
-  store: SifthookStore,
+  store: SifthookdevStore,
   fileId: number,
   filePath: string
 ): Promise<number> {
   const extractor = await getEmbeddingPipeline();
-  const db = await getLanceDB(store.getSifthookDir());
+  const db = await getLanceDB(store.getSifthookdevDir());
 
   const symbols = store.getSymbolsByFile(fileId);
   const records: Array<{
