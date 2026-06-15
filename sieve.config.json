@@ -1,0 +1,20 @@
+{
+  "max_depth": 2,
+  "languages": ["typescript", "javascript", "python"],
+  "provider": "anthropic",
+  "api_key_env_var": "ANTHROPIC_API_KEY",
+  "model": "claude-sonnet-4-20250514",
+  "max_cost_per_review": 0.10,
+  "temporal_coupling_threshold": 0.80,
+  "temporal_commit_limit": 500,
+  "exclude_patterns": [
+    "node_modules/**",
+    "dist/**",
+    ".sieve/**",
+    "**/*.test.*",
+    "**/*.spec.*",
+    "coverage/**",
+    "__pycache__/**",
+    ".git/**"
+  ]
+}
