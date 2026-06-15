@@ -3,7 +3,7 @@
  * Hard-fails if projected cost exceeds max_cost_per_review.
  */
 
-import { estimateTokens, calculateCost, type SieveConfig, type TokenUsage } from '../types.js';
+import { estimateTokens, calculateCost, type SifthookConfig, type TokenUsage } from '../types.js';
 
 export interface BudgetCheck {
   withinBudget: boolean;
@@ -20,7 +20,7 @@ export interface BudgetCheck {
  */
 export function checkBudget(
   prompt: string,
-  config: SieveConfig
+  config: SifthookConfig
 ): BudgetCheck {
   const estimatedInputTokens = estimateTokens(prompt);
   const estimatedOutputTokens = Math.ceil(estimatedInputTokens * 0.25);
@@ -52,7 +52,7 @@ export function formatBudgetError(check: BudgetCheck): string {
     `   Over by:            $${(check.projectedCost - check.budgetLimit).toFixed(4)}`,
     '',
     '   To proceed anyway, use --force flag.',
-    '   To increase the budget, edit max_cost_per_review in sieve.config.json.',
+    '   To increase the budget, edit max_cost_per_review in sifthook.config.json.',
     '━'.repeat(50),
     '',
   ].join('\n');

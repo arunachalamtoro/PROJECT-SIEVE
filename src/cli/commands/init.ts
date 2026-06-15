@@ -1,7 +1,7 @@
 /**
- * `sieve init` — Index a repository and build the dependency graph.
+ * `sifthook init` — Index a repository and build the dependency graph.
  * Walks the repo, parses source files with tree-sitter, extracts symbols and edges,
- * and persists everything to .sieve/graph.db.
+ * and persists everything to .sifthook/graph.db.
  */
 
 import { Command } from 'commander';
@@ -11,7 +11,7 @@ import crypto from 'node:crypto';
 import ignore from 'ignore';
 import { parseFile, detectLanguage } from '../../indexer/parser.js';
 import { buildGraph } from '../../indexer/graph-builder.js';
-import { SieveStore } from '../../indexer/store.js';
+import { SifthookStore } from '../../indexer/store.js';
 import { generateAndStoreEmbeddings } from '../../indexer/embeddings.js';
 import { analyzeTemporalCoupling } from '../../indexer/temporal.js';
 import { loadConfig } from '../../config.js';
@@ -26,7 +26,7 @@ export const initCommand = new Command('init')
     const startTime = Date.now();
     const repoRoot = path.resolve(options.path);
 
-    console.log('🔬 Sieve — Indexing repository...');
+    console.log('🔬 Sifthook — Indexing repository...');
     console.log(`   Root: ${repoRoot}\n`);
 
     const config = loadConfig(repoRoot);
@@ -36,7 +36,7 @@ export const initCommand = new Command('init')
     console.log(`📁 Found ${files.length} source files\n`);
 
     if (files.length === 0) {
-      console.log('⚠️  No supported source files found. Sieve supports: .ts, .tsx, .js, .jsx, .py');
+      console.log('⚠️  No supported source files found. Sifthook supports: .ts, .tsx, .js, .jsx, .py');
       return;
     }
 
@@ -75,8 +75,8 @@ export const initCommand = new Command('init')
     const graph = buildGraph(parsedFiles);
 
     // 4. Store in SQLite
-    console.log('💾 Writing to .sieve/graph.db...');
-    const store = new SieveStore(repoRoot);
+    console.log('💾 Writing to .sifthook/graph.db...');
+    const store = new SifthookStore(repoRoot);
     const stats = store.storeGraph(graph, contentHashes);
 
     console.log(`   ✅ ${stats.filesIndexed} files indexed`);
@@ -91,7 +91,7 @@ export const initCommand = new Command('init')
         console.log(`   ✅ ${embeddingCount} symbol embeddings stored\n`);
       } catch (err) {
         console.log(`   ⚠️  Embedding generation failed (non-critical): ${(err as Error).message}`);
-        console.log('   Semantic search will be unavailable. Run sieve init again to retry.\n');
+        console.log('   Semantic search will be unavailable. Run sifthook init again to retry.\n');
       }
     }
 
@@ -119,7 +119,7 @@ export const initCommand = new Command('init')
       console.log(`   Temporal Edges:  ${finalStats.temporalEdges}`);
     }
     console.log(`   Time:            ${elapsed}s`);
-    console.log(`   Data:            ${store.getSieveDir()}`);
+    console.log(`   Data:            ${store.getSifthookDir()}`);
     console.log('━'.repeat(50));
 
     store.close();

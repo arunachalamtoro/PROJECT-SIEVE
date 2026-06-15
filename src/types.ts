@@ -184,7 +184,7 @@ export interface GraphOutput {
 
 // ─── Config ────────────────────────────────────────────────────────
 
-export interface SieveConfig {
+export interface SifthookConfig {
   /** Max blast-radius BFS depth (default: 2) */
   max_depth: number;
 
@@ -216,7 +216,7 @@ export interface SieveConfig {
   exclude_patterns: string[];
 }
 
-export const DEFAULT_CONFIG: SieveConfig = {
+export const DEFAULT_CONFIG: SifthookConfig = {
   max_depth: 2,
   languages: ['typescript', 'javascript', 'python'],
   provider: 'anthropic',
@@ -228,7 +228,7 @@ export const DEFAULT_CONFIG: SieveConfig = {
   exclude_patterns: [
     'node_modules/**',
     'dist/**',
-    '.sieve/**',
+    '.sifthook/**',
     '**/*.test.*',
     '**/*.spec.*',
     'coverage/**',

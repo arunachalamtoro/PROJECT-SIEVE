@@ -1,17 +1,17 @@
 /**
- * Config loader — reads sieve.config.json and merges with defaults.
+ * Config loader — reads sifthook.config.json and merges with defaults.
  */
 
 import fs from 'node:fs';
 import path from 'node:path';
-import type { SieveConfig } from './types.js';
+import type { SifthookConfig } from './types.js';
 import { DEFAULT_CONFIG } from './types.js';
 
 /**
- * Load configuration from sieve.config.json, merging with defaults.
+ * Load configuration from sifthook.config.json, merging with defaults.
  */
-export function loadConfig(repoRoot: string): SieveConfig {
-  const configPath = path.join(repoRoot, 'sieve.config.json');
+export function loadConfig(repoRoot: string): SifthookConfig {
+  const configPath = path.join(repoRoot, 'sifthook.config.json');
 
   if (!fs.existsSync(configPath)) {
     return { ...DEFAULT_CONFIG };
@@ -19,10 +19,10 @@ export function loadConfig(repoRoot: string): SieveConfig {
 
   try {
     const raw = fs.readFileSync(configPath, 'utf-8');
-    const userConfig = JSON.parse(raw) as Partial<SieveConfig>;
+    const userConfig = JSON.parse(raw) as Partial<SifthookConfig>;
     return { ...DEFAULT_CONFIG, ...userConfig };
   } catch (err) {
-    console.warn(`⚠️  Failed to parse sieve.config.json: ${(err as Error).message}`);
+    console.warn(`⚠️  Failed to parse sifthook.config.json: ${(err as Error).message}`);
     console.warn('   Using default configuration.\n');
     return { ...DEFAULT_CONFIG };
   }
@@ -32,7 +32,7 @@ export function loadConfig(repoRoot: string): SieveConfig {
  * Write a default config file.
  */
 export function writeDefaultConfig(repoRoot: string): void {
-  const configPath = path.join(repoRoot, 'sieve.config.json');
+  const configPath = path.join(repoRoot, 'sifthook.config.json');
   if (fs.existsSync(configPath)) return;
 
   const config = {

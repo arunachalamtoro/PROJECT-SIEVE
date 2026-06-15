@@ -3,7 +3,7 @@
  * Finds everything that depends on a changed symbol/file (reverse traversal).
  */
 
-import type { SieveStore } from '../indexer/store.js';
+import type { SifthookStore } from '../indexer/store.js';
 import type { BlastRadiusNode, SymbolKind, EdgeType } from '../types.js';
 
 /**
@@ -11,7 +11,7 @@ import type { BlastRadiusNode, SymbolKind, EdgeType } from '../types.js';
  * Traverses edges in the REVERSE direction (find what depends on this).
  */
 export function computeBlastRadius(
-  store: SieveStore,
+  store: SifthookStore,
   filePath: string,
   symbolName?: string,
   maxDepth: number = 2,

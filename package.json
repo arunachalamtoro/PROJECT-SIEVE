@@ -1,21 +1,39 @@
 {
-  "name": "project-sieve",
-  "version": "1.0.1",
+  "name": "sifthook",
+  "version": "1.0.2",
   "description": "AI-powered PR analyzer with semantic dependency graph — knows the blast radius of every code change",
   "type": "module",
-  "main": "dist/cli/index.js",
+  "main": "dist/src/cli/index.js",
   "bin": {
-    "sieve": "dist/cli/index.js"
+    "sifthook": "dist/src/cli/index.js"
   },
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && vite build",
     "dev": "tsx src/cli/index.ts",
+    "electron:dev": "concurrently \"vite\" \"wait-on tcp:3000 && tsc && electron dist/electron/main.js\"",
+    "electron:build": "npm run build && electron-builder",
     "test": "vitest run",
     "test:watch": "vitest",
-    "sieve": "tsx src/cli/index.ts",
+    "sifthook": "tsx src/cli/index.ts",
     "lint": "tsc --noEmit",
     "download-grammars": "tsx scripts/download-grammars.ts",
     "prepare": "tsx scripts/download-grammars.ts"
+  },
+  "build": {
+    "appId": "com.projectsifthook.app",
+    "productName": "Sifthook",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist/**/*",
+      "dist-ui/**/*",
+      "package.json",
+      "node_modules/**/*"
+    ],
+    "extraMetadata": {
+      "main": "dist/electron/main.js"
+    }
   },
   "keywords": [
     "code-review",
@@ -41,17 +59,28 @@
     "chokidar": "^4.0.3",
     "commander": "^13.1.0",
     "ignore": "^7.0.4",
+    "lucide-react": "^1.18.0",
     "octokit": "^4.1.2",
     "parse-diff": "^0.11.1",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
     "sharp": "^0.35.1",
     "tree-sitter-wasms": "^0.1.13",
     "web-tree-sitter": "^0.24.7",
     "zod": "^3.24.4"
   },
   "devDependencies": {
+    "@tailwindcss/vite": "^4.3.1",
     "@types/node": "^22.15.0",
+    "@vitejs/plugin-react": "^6.0.2",
+    "concurrently": "^10.0.3",
+    "electron": "^42.4.0",
+    "electron-builder": "^26.15.3",
+    "tailwindcss": "^4.3.1",
     "tsx": "^4.19.4",
     "typescript": "^5.8.3",
-    "vitest": "^3.1.3"
+    "vite": "^8.0.16",
+    "vitest": "^3.1.3",
+    "wait-on": "^9.0.10"
   }
 }

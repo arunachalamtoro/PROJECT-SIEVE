@@ -1,6 +1,6 @@
 /**
  * Store — SQLite persistence layer using Node.js built-in node:sqlite.
- * Manages .sieve/graph.db for the dependency graph.
+ * Manages .sifthook/graph.db for the dependency graph.
  * No native compilation required — uses the WASM-based SQLite built into Node.js 22.5+.
  */
 
@@ -18,18 +18,18 @@ import type {
 } from '../types.js';
 import type { DependencyGraph } from './graph-builder.js';
 
-const SIEVE_DIR = '.sieve';
+const SIFTHOOK_DIR = '.sifthook';
 const DB_FILE = 'graph.db';
 
-export class SieveStore {
+export class SifthookStore {
   private db: DatabaseSync;
-  private sieveDir: string;
+  private sifthookDir: string;
 
   constructor(repoRoot: string) {
-    this.sieveDir = path.join(repoRoot, SIEVE_DIR);
-    fs.mkdirSync(this.sieveDir, { recursive: true });
+    this.sifthookDir = path.join(repoRoot, SIFTHOOK_DIR);
+    fs.mkdirSync(this.sifthookDir, { recursive: true });
 
-    const dbPath = path.join(this.sieveDir, DB_FILE);
+    const dbPath = path.join(this.sifthookDir, DB_FILE);
     this.db = new DatabaseSync(dbPath);
     this.db.exec('PRAGMA journal_mode = WAL');
     this.db.exec('PRAGMA foreign_keys = ON');
@@ -92,10 +92,10 @@ export class SieveStore {
   }
 
   /**
-   * Get the .sieve directory path.
+   * Get the .sifthook directory path.
    */
-  getSieveDir(): string {
-    return this.sieveDir;
+  getSifthookDir(): string {
+    return this.sifthookDir;
   }
 
   /**

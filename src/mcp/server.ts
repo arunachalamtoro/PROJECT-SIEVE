@@ -1,6 +1,6 @@
 /**
  * MCP Server — bootstraps an MCP server over stdio.
- * Registers all 4 Sieve tools for any MCP client (Claude Code, Cursor, Brick).
+ * Registers all 4 Sifthook tools for any MCP client (Claude Code, Cursor, Brick).
  */
 
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
@@ -18,7 +18,7 @@ import {
  */
 export async function startMCPServer(repoRoot: string): Promise<void> {
   const server = new McpServer({
-    name: 'sieve',
+    name: 'sifthook',
     version: '1.0.0',
   });
 

@@ -1,10 +1,10 @@
 /**
- * `sieve search` — Semantic search over the codebase using embeddings.
+ * `sifthook search` — Semantic search over the codebase using embeddings.
  */
 
 import { Command } from 'commander';
 import path from 'node:path';
-import { SieveStore } from '../../indexer/store.js';
+import { SifthookStore } from '../../indexer/store.js';
 import { searchSymbols } from '../../indexer/embeddings.js';
 
 export const searchCommand = new Command('search')
@@ -16,15 +16,15 @@ export const searchCommand = new Command('search')
     const repoRoot = path.resolve(options.path);
     const topK = parseInt(options.top, 10) || 8;
 
-    const store = new SieveStore(repoRoot);
+    const store = new SifthookStore(repoRoot);
 
     try {
       console.log(`🔍 Searching for: "${query}"\n`);
 
-      const results = await searchSymbols(store.getSieveDir(), query, topK);
+      const results = await searchSymbols(store.getSifthookDir(), query, topK);
 
       if (results.length === 0) {
-        console.log('  No results found. Make sure you\'ve run `sieve init` first.');
+        console.log('  No results found. Make sure you\'ve run `sifthook init` first.');
         return;
       }
 

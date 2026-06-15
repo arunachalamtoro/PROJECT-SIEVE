@@ -10,7 +10,7 @@
   "exclude_patterns": [
     "node_modules/**",
     "dist/**",
-    ".sieve/**",
+    ".sifthook/**",
     "**/*.test.*",
     "**/*.spec.*",
     "coverage/**",

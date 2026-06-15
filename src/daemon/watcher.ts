@@ -8,7 +8,7 @@ import path from 'node:path';
 import fs from 'node:fs';
 import crypto from 'node:crypto';
 import { parseFile, detectLanguage } from '../indexer/parser.js';
-import { SieveStore } from '../indexer/store.js';
+import { SifthookStore } from '../indexer/store.js';
 import { updateFileEmbeddings } from '../indexer/embeddings.js';
 import { loadConfig } from '../config.js';
 import type { SupportedLanguage } from '../types.js';
@@ -26,7 +26,7 @@ export interface WatcherStats {
  */
 export function startWatcher(
   repoRoot: string,
-  store: SieveStore,
+  store: SifthookStore,
   logFn: (msg: string) => void = console.log
 ): { watcher: FSWatcher; stats: WatcherStats } {
   const config = loadConfig(repoRoot);
@@ -48,7 +48,7 @@ export function startWatcher(
 
   const ignorePatterns = [
     '**/node_modules/**',
-    '**/.sieve/**',
+    '**/.sifthook/**',
     '**/dist/**',
     '**/coverage/**',
     '**/__pycache__/**',

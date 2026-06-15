@@ -1,4 +1,4 @@
-name: Sieve PR Review
+name: Sifthook PR Review
 
 on:
   pull_request:
@@ -9,7 +9,7 @@ permissions:
   pull-requests: write
 
 jobs:
-  sieve-review:
+  sifthook-review:
     name: AI Code Review
     runs-on: ubuntu-latest
     steps:
@@ -18,7 +18,7 @@ jobs:
         with:
           fetch-depth: 0  # Full history for temporal coupling analysis
 
-      - name: Run Sieve
+      - name: Run Sifthook
         uses: ./
         with:
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
