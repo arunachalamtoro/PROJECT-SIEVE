@@ -1,6 +1,5 @@
 <div align="center">
-
-  <a href="https://imgbb.com/"><img src="https://i.ibb.co/9d44WHd/Screenshot-2026-06-15-183312.png" alt="Screenshot 2026 06 15 183312" border="0"></a>
+<a href="https://imgbb.com/"><img src="https://i.ibb.co/k6B5Sr7P/Screenshot-2026-06-15-183312.png" alt="Screenshot 2026 06 15 183312" border="0"></a>
   <p><b>The AI-powered PR analyzer that mathematically guarantees the blast radius of every code change.</b></p>
   <p>
     <img src="https://img.shields.io/badge/Status-Production_Ready-success" alt="Status" />
