@@ -1,6 +1,6 @@
 {
   "name": "project-sieve",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "AI-powered PR analyzer with semantic dependency graph — knows the blast radius of every code change",
   "type": "module",
   "main": "dist/cli/index.js",
