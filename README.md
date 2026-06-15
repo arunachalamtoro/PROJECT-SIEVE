@@ -1,7 +1,9 @@
 <div align="center">
 
   
-  <h1>🔬 Sifthook</h1>
+  <p>
+    <img src="https://ibb.co/gcWWJZc" alt="Sifthook Logo" width="200" />
+  </p>
   <p><b>The AI-powered PR analyzer that mathematically guarantees the blast radius of every code change.</b></p>
   <p>
     <img src="https://img.shields.io/badge/Status-Production_Ready-success" alt="Status" />
